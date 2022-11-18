@@ -1,36 +1,36 @@
-#
+# Downsample Dataset
 
-# パッケージのインポート
+# imprt package
 import numpy as np
 import glob
 import os
 import torch
 import torchvision.transforms as transforms
 
-# データセットの作成
+# make dataset
 from PIL import Image
 class DownsampleDataset(torch.utils.data.Dataset):
   def __init__(self, root, transform=None, highreso_size=128, lowreso_size=32):
     self.transform = transform
 
-    self.highreso_resize = transforms.Resize(highreso_size)  # 高解像度
-    self.lowreso_resize = transforms.Resize(lowreso_size)  # 低解像度
+    self.highreso_resize = transforms.Resize(highreso_size)  # high resolution
+    self.lowreso_resize = transforms.Resize(lowreso_size)  # low resolution
 
-    self.image_paths = sorted(glob.glob(os.path.join(root + '/*/*jpg')))  # 画像パスのリスト取得
+    self.image_paths = sorted(glob.glob(os.path.join(root + '/*/*jpg')))  # get image path list
     self.images_n = len(self.image_paths)
 
   def __len__(self):
-    return self.images_n  # 画像数のカウント
+    return self.images_n  # count number of image
 
   def __getitem__(self, index):
-    path = self.image_paths[index]  # indexをもとに画像のファイルパスを取得
-    image = Image.open(path)  # 画像読み込み
+    path = self.image_paths[index]  # get file path
+    image = Image.open(path)  # load image
 
     # 画像のリサイズ
-    highreso_image = self.highreso_resize(image)  # 高解像度画像
-    lowreso_image = self.highreso_resize(self.lowreso_resize(image))  # 低解像度画像。一度低解像度にしてから高解像度と同じ画像サイズに変換
+    highreso_image = self.highreso_resize(image)  # high resolution image
+    lowreso_image = self.highreso_resize(self.lowreso_resize(image))  # make low resolution image
 
-    # transformが引数で与えられた場合
+    # if argument transform
     if self.transform:
       highreso_image = self.transform(highreso_image)
       lowreso_image = self.transform(lowreso_image)
