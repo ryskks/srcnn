@@ -22,6 +22,7 @@ http://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz
 
 ### License
  
-under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+ - under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+
 
 
