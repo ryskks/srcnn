@@ -24,7 +24,7 @@ transform=transforms.Compose([transforms.ToTensor(),  # to Tensor
                                   )])
 
 # Do function
-dataset = DwnSmpl.DownsampleDataset('enter your own path', transform=transform, highreso_size=128, lowreso_size=32)
+dataset = DwnSmpl.DownsampleDataset('../../../Rdata/data', transform=transform, highreso_size=128, lowreso_size=32)
 print("dataset size: {}".format(len(dataset)))
 
 # divide train test
@@ -34,7 +34,7 @@ print("train_dataset size: {}".format(len(train_dataset)))
 print("test_dataset size: {}".format(len(test_dataset)))
 
 # batch size
-batch_size = 64
+batch_size = 4
 
 # dataloader
 train_batch = torch.utils.data.DataLoader(dataset=train_dataset,  # subject to dataset
@@ -165,7 +165,7 @@ test_ssim_list = []  # test SSIM
 
 
 # number of epoch
-epoch = 5 
+epoch = 300 
 
 for i in range(epoch):
     # progress
