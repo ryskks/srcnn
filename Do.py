@@ -24,7 +24,7 @@ transform=transforms.Compose([transforms.ToTensor(),  # to Tensor
                                   )])
 
 # Do function
-dataset = DwnSmpl.DownsampleDataset('../../../Rdata/data', transform=transform, highreso_size=128, lowreso_size=32)
+dataset = DwnSmpl.DownsampleDataset('PATH', transform=transform, highreso_size=128, lowreso_size=32)
 print("dataset size: {}".format(len(dataset)))
 
 # divide train test
@@ -165,7 +165,7 @@ test_ssim_list = []  # test SSIM
 
 
 # number of epoch
-epoch = 300 
+epoch = 5
 
 for i in range(epoch):
     # progress

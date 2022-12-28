@@ -16,7 +16,7 @@ class DownsampleDataset(torch.utils.data.Dataset):
     self.highreso_resize = transforms.Resize(highreso_size)  # high resolution
     self.lowreso_resize = transforms.Resize(lowreso_size)  # low resolution
 
-    self.image_paths = sorted(glob.glob(os.path.join(root + '/*/*jpg')))  # get image path list
+    self.image_paths = sorted(glob.glob(os.path.join(root + '/*/*.jpg')))  # get image path list
     self.images_n = len(self.image_paths)
 
   def __len__(self):
